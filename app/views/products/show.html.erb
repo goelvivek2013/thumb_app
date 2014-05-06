@@ -14,6 +14,9 @@
   <b>Description:</b>
   <%= @product.description %>
 </p>
+<p>
+<%= image_tag @product.image if @product.image? %>
+</p>
 <div>
   <em>
       <%= current_user.email %>
