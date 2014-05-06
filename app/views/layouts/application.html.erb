@@ -65,6 +65,9 @@
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
             <div>
+            <div>
+              <h2><b>Highest voted user <%= ApplicationHelper.highrankuser %></b></h2>
+            </div>
             <% if current_user %>
               Logged in as <strong><%= current_user.email %></strong>
               (<%= current_user.reputation_for(:votes).to_i %>).
