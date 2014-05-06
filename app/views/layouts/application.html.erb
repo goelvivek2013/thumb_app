@@ -64,6 +64,12 @@
             <%= bootstrap_flash %>
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
+            <div>
+            <% if current_user %>
+              Logged in as <strong><%= current_user.email %></strong>
+              (<%= current_user.reputation_for(:votes).to_i %>).
+            <% end %>
+            </div>
             <%= yield %>   
           </div>
 

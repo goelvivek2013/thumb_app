@@ -2,8 +2,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
-
+    @products = Product.find_with_reputation(:votes, :all, order: 'votes desc')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
@@ -80,4 +79,13 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @product = Product.find(params[:id])
+    @product.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting!"
+  end
+
+
 end
